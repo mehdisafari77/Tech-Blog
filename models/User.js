@@ -15,8 +15,14 @@ User.init({
     },
     username: {
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    password: {
+        type: DataTypes.STRING,
         allowNull: false,
-        
+        validate: {
+            len: [5]
+        }
     }
 },
     {
@@ -33,6 +39,7 @@ User.init({
           },
         sequelize, 
         freezeTableName: true,
+        timestamps: false,
         underscored: true,
         modelName: 'user'
     }
