@@ -1,7 +1,7 @@
 # Tech-Blog
 
 ## Summary
-
+A tech-blog meant for everyone intrested in the creation of a tech community. This is a CMS-style blog where tech enthusiats can publish their blog posts and even comment on other users' posts. The app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
 
 ## Video Link To View Process
 
@@ -16,14 +16,23 @@
 * [Sequelize](https://sequelize.org/master/index.html)
 
 ## Installation Steps
-1. First open Terminal.
-2. Navigate to repo file.
-3. enter in Terminal "npm install" in order to install all dependecies (inquirer, express, mysql2, dotenv, sequelize).
-4. Start the server connection by writing "npm start" within your Terminal, after getting the prompt "App listening on port 3001!" you may open insomnia, or your browser to test out the routes in order to check on the backend database.
+1. Clone project.
+2. Open terminal and run these commands in order
+    - npm install
+    - node seeds/index.js
+    - npm start
 
-## Code Snippet Of A Get Route For Category
+## Code Snippet Authentication Code
 ```javascript
-
+const withAuth = (req, res, next) => {
+    if (!req.session.userId) {
+      res.redirect("/login");
+    } else {
+      next();
+    }
+  };
+  
+  module.exports = withAuth;
 ```
 
 ## Author
