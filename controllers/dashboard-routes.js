@@ -3,22 +3,25 @@ const sequelize = require('../config/connection')
 const { Post, User, Comment } = require('../models')
 const withAuth = require('../utils/auth')
 
-router.get('/', withAuth, (req, res) => {
-    const postData = Post.findAll({
-        where: {
-            user_id: req.session.user_id
-        },
+router.get("/", withAuth, (req, res) => {
+    Post.findAll({
+      where: {
+        userId: req.session.userId
+      }
+    })
+      .then(postData => {
+        const posts = postData.map((post) => post.get({ plain: true }));
         
-    })
-    const allPosts = postData.map(post => post.get({ plain: true }))
-    res.render('post-admin', { 
-        layout: 'dashboard', allPosts 
-    })
-    .catch(err => {
+        res.render("all-posts-admin", {
+          layout: "dashboard",
+          posts
+        });
+      })
+      .catch(err => {
         console.log(err);
         res.redirect("login");
       });
-})
+  });
 
 router.get("/edit/:id", withAuth, (req, res) => {
     Post.findByPk(req.params.id)
