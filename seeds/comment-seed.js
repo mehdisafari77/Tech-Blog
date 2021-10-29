@@ -2,14 +2,14 @@ const { Comment } = require('../models');
 
 const commentData = [
     {
-        user_id: 1,
+        user_id: 2,
         post_id: 1,
-        comment_text: 'This is a very nice tip, thank you!'
+        comment_text: 'This is a very nice tool for real, totally in love with it.The hype is real, lol'
     },
     {
         user_id: 4,
         post_id: 2,
-        comment_text: 'Truly helpful and great!'
+        comment_text: 'Wow, that is truly sad'
     },
     {
         user_id: 2,
@@ -24,22 +24,22 @@ const commentData = [
     {
         user_id: 2,
         post_id: 3,
-        comment_text: 'Congrats!'
+        comment_text: 'LMAO, that is a really cool app!'
     },
     {
         user_id: 5,
         post_id: 4,
-        comment_text: 'Keep up the great work everyone!'
+        comment_text: 'Wow! Congrats to the Facebook team!'
     },
     {
-        user_id: 2,
+        user_id: 1,
         post_id: 3,
-        comment_text: "Amazing!"
+        comment_text: 'Amazing!'
     },
     {
         user_id: 3,
         post_id: 1,
-        comment_text: "Nice tool!"
+        comment_text: 'Nice app!'
     }
 ]
 
