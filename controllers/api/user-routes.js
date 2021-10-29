@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({
@@ -43,6 +44,7 @@ router.post('/login', async (req, res) => {
     res.status(400).json({ message: 'No user account found!' });
   }
 });
+
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
