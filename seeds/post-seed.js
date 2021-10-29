@@ -15,7 +15,6 @@ const postData = [
         title: 'Holy-Hour Is Live Now!',
         post_content: 'An app meant for users to find the number of churches and bars in a city! Great for getting to know what type of a city you are going to, before actually going there.',
         user_id: 2
-
     },
     {
         title: 'Metaverse',
@@ -29,6 +28,6 @@ const postData = [
     }
 ]
 
-const seedPosts = () => Post.bulkCreate(postData);
+const postSeeds = () => Post.bulkCreate(postData);
 
-module.exports = seedPosts;
+module.exports = postSeeds;
