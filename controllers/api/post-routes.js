@@ -21,6 +21,10 @@ router.get('/', (req, res) => {
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: 'username'
+        }
       
       },
     ]
@@ -45,6 +49,7 @@ router.post('/', withAuth, (req, res) => {
     });
 });
 
+// Get one user route
 router.get('/:id', (req, res) => {
   Post.findByPk({
     where: {
@@ -57,7 +62,6 @@ router.get('/:id', (req, res) => {
       'post_content'
     ],
     include: [
-      // include the Comment model here:
       {
         model: User,
         attributes: 'username'
@@ -65,6 +69,10 @@ router.get('/:id', (req, res) => {
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: 'username'
+        }
       }
     ]
   })

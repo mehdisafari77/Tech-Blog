@@ -37,10 +37,7 @@ router.get("/", (req, res) => {
 
 // Route for getting single post
 router.get("/post/:id", (req, res) => {
-  Post.findOne({
-    where: {
-      id: req.params.id
-    },
+  Post.findByPk(req.params.id, {
     attributes: [
       'id',
       'title',
