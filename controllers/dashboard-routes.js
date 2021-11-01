@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth')
 router.get("/", withAuth, (req, res) => {
     Post.findAll({
       where: {
-        userId: req.session.userId
+        user_id: req.session.user_id
       },
       attributes: [
         'id',
@@ -18,6 +18,14 @@ router.get("/", withAuth, (req, res) => {
         {
           model: Comment,
           attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+          include: {
+            model: User,
+            attributes: 'username'
+          }
+        },
+        {
+          model: User,
+          attributes: 'username'
         }
       ]
     })
@@ -36,13 +44,70 @@ router.get("/", withAuth, (req, res) => {
   });
 
   router.get("/new", withAuth, (req, res) => {
-    res.render("new-post", {
-      layout: "dashboard"
+    Post.findAll({
+      where: {
+        // use the ID from the session
+        user_id: req.session.user_id
+      },
+      attributes: [
+        'id',
+        'title',
+        'created_at',
+        'post_content'
+      ],
+      include: [
+        {
+          model: Comment,
+          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+          include: {
+            model: User,
+            attributes: 'username'
+          }
+        },
+        {
+          model: User,
+          attributes: 'username'
+        }
+      ]
+    })
+    .then(postData => {
+      // serialize data before passing to template
+      const posts = postData.map(post => post.get({ plain: true }));
+      res.render('new-post', { posts, loggedIn: true, layout: "dashboard" });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
   });
 
+  // Get one post route
 router.get("/edit/:id", withAuth, (req, res) => {
-    Post.findByPk(req.params.id)
+  Post.findByPk({
+    where: {
+      user_id: req.params.user_id
+    },
+    attributes: [
+      'id',
+      'title',
+      'created_at',
+      'post_content'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: 'username'
+        }
+      },
+      {
+        model: User,
+        attributes: 'username'
+      }
+    ]
+  })
       .then(postData => {
         if (postData) {
           const post = postData.get({ plain: true });
