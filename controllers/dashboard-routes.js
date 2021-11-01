@@ -23,6 +23,12 @@ router.get("/", withAuth, (req, res) => {
       });
   });
 
+  router.get("/new", withAuth, (req, res) => {
+    res.render("new-post", {
+      layout: "dashboard"
+    });
+  });
+
 router.get("/edit/:id", withAuth, (req, res) => {
     Post.findByPk(req.params.id)
       .then(postData => {
