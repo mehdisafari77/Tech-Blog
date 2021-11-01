@@ -7,7 +7,19 @@ router.get("/", withAuth, (req, res) => {
     Post.findAll({
       where: {
         userId: req.session.userId
-      }
+      },
+      attributes: [
+        'id',
+        'title',
+        'created_at',
+        'post_content'
+      ],
+      include: [
+        {
+          model: Comment,
+          attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        }
+      ]
     })
       .then(postData => {
         const posts = postData.map((post) => post.get({ plain: true }));
