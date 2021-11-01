@@ -4,7 +4,26 @@ const { Post, Comment, User } = require("../models/");
 // Route for getting all posts for homepage
 router.get("/", (req, res) => {
   Post.findAll({
-    include: [User],
+    attributes: [
+      'id',
+      'title',
+      'created_at',
+      'post_content'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: 'username'
+        }
+      },
+      {
+        model: User,
+        attributes: 'username'
+      }
+    ]
   })
     .then((postData) => {
       const posts = postData.map((post) => post.get({ plain: true }));
@@ -18,15 +37,31 @@ router.get("/", (req, res) => {
 
 // Route for getting single post
 router.get("/post/:id", (req, res) => {
-    Post.findByPk(req.params.id, {
-      include: [
-        User,
-        {
-          model: Comment,
-          include: [User],
-        },
-      ],
-    })
+  Post.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'title',
+      'created_at',
+      'post_content'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: 'username'
+        }
+      },
+      {
+        model: User,
+        attributes: 'username'
+      }
+    ]
+  })
       .then((postData) => {
         if (postData) {
           const post = postData.get({ plain: true });
