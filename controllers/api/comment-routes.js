@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Comment } = require('../../models/');
 const withAuth = require('../../utils/auth');
 
-// Create comment route
+// Create comment
 router.post('/', withAuth, (req, res) => {
   // Checking user session
   if (req.session) {
