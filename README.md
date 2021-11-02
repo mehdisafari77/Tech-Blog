@@ -5,8 +5,14 @@ A tech-blog meant for everyone intrested in the creation of a tech community. Th
 
 ## Video Link To View Process
 
-## Screenshot
+## Screenshot Of Main Screen
+<img width="1200" alt="Screenshot 2021-11-01 at 21 42 23" src="https://user-images.githubusercontent.com/75599021/139788021-f9d8243b-bbd5-4b04-ab50-f8cd3fd9305d.png">
 
+## Screenshot Of Comments Section
+<img width="1197" alt="Screenshot 2021-11-01 at 21 43 36" src="https://user-images.githubusercontent.com/75599021/139788140-e37f9de5-aebf-4009-916f-6f16934530b2.png">
+
+## Screenshot Of Signup/Login Section
+<img width="1202" alt="Screenshot 2021-11-01 at 21 43 47" src="https://user-images.githubusercontent.com/75599021/139788150-cb1b2bcd-4d82-4682-8bc9-80af0eae1bf8.png">
 
 ## Built With
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
