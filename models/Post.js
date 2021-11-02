@@ -11,6 +11,9 @@ Post.init(
         primaryKey: true,
         autoIncrement: true
       },
+      body: {
+        type: DataTypes.STRING
+      },
       title: {
         type: DataTypes.STRING,
         allowNull: false
@@ -27,10 +30,7 @@ Post.init(
         }
       }
     },
-    {
-        title: DataTypes.STRING,
-        body: DataTypes.STRING
-      },
+    
     {
       sequelize,
       freezeTableName: true,

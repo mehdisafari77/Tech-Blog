@@ -2,6 +2,7 @@ const router = require('express').Router()
 const postRoutes = require('./post-routes')
 const userRoutes = require('./user-routes')
 const commentRoutes = require('./comment-routes')
+const sequelize = require('../../config/connection');
 
 router.use('/post', postRoutes)
 router.use('/user', userRoutes)
