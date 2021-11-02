@@ -5,7 +5,7 @@ const commentSeeds = require('./comment-seed');
 const sequelize = require('../config/connection');
 
 const seedAll = async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: false });
     console.log('\n----- DATABASE SYNCED -----\n');
 
   await postSeeds();
@@ -16,7 +16,6 @@ const seedAll = async () => {
   
   await userSeeds();
     console.log('\n----- USERS SEEDED -----\n');
-
 
   process.exit(0);
 };
