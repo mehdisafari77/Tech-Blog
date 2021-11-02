@@ -12,22 +12,7 @@
     "express-session": "^1.17.2",
     "express-sessions": "^1.0.6",
     "handlebars": "^4.7.7",
-    "init": "^0.1.2",
     "mysql2": "^2.3.2",
     "sequelize": "^6.8.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mehdisafari77/Tech-Blog.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mehdisafari77/Tech-Blog/issues"
-  },
-  "homepage": "https://github.com/mehdisafari77/Tech-Blog#readme"
+  }
 }

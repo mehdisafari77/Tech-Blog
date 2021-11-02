@@ -1,32 +1,13 @@
 const router = require("express").Router();
 const { Post, Comment, User } = require("../models/");
 
-// Route for getting all posts for homepage
+// get all posts for homepage
 router.get("/", (req, res) => {
   Post.findAll({
-    attributes: [
-      'id',
-      'title',
-      'created_at',
-      'post_content'
-    ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: 'username'
-        }
-      },
-      {
-        model: User,
-        attributes: 'username'
-      }
-    ]
+    include: [User],
   })
-    .then((postData) => {
-      const posts = postData.map((post) => post.get({ plain: true }));
+    .then((dbPostData) => {
+      const posts = dbPostData.map((post) => post.get({ plain: true }));
 
       res.render("all-posts", { posts });
     })
@@ -35,60 +16,47 @@ router.get("/", (req, res) => {
     });
 });
 
-// Route for getting single post
+// get single post
 router.get("/post/:id", (req, res) => {
   Post.findByPk(req.params.id, {
-    attributes: [
-      'id',
-      'title',
-      'created_at',
-      'post_content'
-    ],
     include: [
+      User,
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: 'username'
-        }
+        include: [User],
       },
-      {
-        model: User,
-        attributes: 'username'
-      }
-    ]
+    ],
   })
-      .then((postData) => {
-        if (postData) {
-          const post = postData.get({ plain: true });
-  
-          res.render("single-post", { post });
-        } else {
-          res.status(404).end();
-        }
-      })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
-  });
+    .then((dbPostData) => {
+      if (dbPostData) {
+        const post = dbPostData.get({ plain: true });
 
-  router.get("/login", (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect("/");
-      return;
-    }
-  
-    res.render("login");
-  });
-  
-  router.get("/signup", (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect("/");
-      return;
-    }
-  
-    res.render("signup");
-  });
-  
-  module.exports = router;
+        res.render("single-post", { post });
+      } else {
+        res.status(404).end();
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
+
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("login");
+});
+
+router.get("/signup", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("signup");
+});
+
+module.exports = router;
