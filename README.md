@@ -3,6 +3,9 @@
 ## Summary
 A tech-blog meant for everyone intrested in the creation of a tech community. This is a CMS-style blog where tech enthusiats can publish their blog posts and even comment on other users' posts. The app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
 
+## Link To Deployed App
+https://polar-badlands-25931.herokuapp.com/#
+
 ## Video Link To View Process
 https://youtu.be/QAriGf0qcco
 
