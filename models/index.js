@@ -2,6 +2,7 @@ const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./Comment');
 
+// Create associations
 Post.belongsTo(User, {
   foreignKey: 'userId',
   onDelete: 'CASCADE'

@@ -6,8 +6,8 @@ router.get("/", (req, res) => {
   Post.findAll({
     include: [User],
   })
-    .then((dbPostData) => {
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
+    .then((postData) => {
+      const posts = postData.map((post) => post.get({ plain: true }));
 
       res.render("all-posts", { posts });
     })
@@ -27,9 +27,9 @@ router.get("/post/:id", (req, res) => {
       },
     ],
   })
-    .then((dbPostData) => {
-      if (dbPostData) {
-        const post = dbPostData.get({ plain: true });
+    .then((postData) => {
+      if (postData) {
+        const post = postData.get({ plain: true });
 
         res.render("single-post", { post });
       } else {

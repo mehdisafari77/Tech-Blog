@@ -6,8 +6,8 @@ router.post("/", withAuth, (req, res) => {
   const body = req.body;
   console.log(req.session.userId);
   Post.create({ ...body, userId: req.session.userId })
-    .then(newPost => {
-      res.json(newPost);
+    .then(newPostData => {
+      res.json(newPostData);
     })
     .catch(err => {
       res.status(500).json(err);

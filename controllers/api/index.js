@@ -1,11 +1,11 @@
-const router = require('express').Router()
-const postRoutes = require('./post-routes')
-const userRoutes = require('./user-routes')
-const commentRoutes = require('./comment-routes')
-const sequelize = require('../../config/connection');
+const router = require('express').Router();
 
-router.use('/post', postRoutes)
-router.use('/user', userRoutes)
-router.use('/comment', commentRoutes)
+const userRoutes = require('./user-routes.js');
+const postRoutes = require('./post-routes');
+const commentRoutes = require('./comment-routes');
 
-module.exports = router
+router.use('/user', userRoutes);
+router.use('/post', postRoutes);
+router.use('/comment', commentRoutes);
+
+module.exports = router;
