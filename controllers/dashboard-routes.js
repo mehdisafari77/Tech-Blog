@@ -12,9 +12,7 @@ router.get("/", withAuth, (req, res) => {
         const posts = postData.map((post) => post.get({ plain: true }));
         
         res.render("post-admin", {
-          layout: "dashboard",
-          posts
-        });
+          layout: "dashboard", posts });
       })
       .catch(err => {
         console.log(err);
