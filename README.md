@@ -4,6 +4,7 @@
 A tech-blog meant for everyone intrested in the creation of a tech community. This is a CMS-style blog where tech enthusiats can publish their blog posts and even comment on other users' posts. The app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
 
 ## Video Link To View Process
+https://youtu.be/QAriGf0qcco
 
 ## Screenshot Of Main Screen
 <img width="1200" alt="Screenshot 2021-11-01 at 21 42 23" src="https://user-images.githubusercontent.com/75599021/139788021-f9d8243b-bbd5-4b04-ab50-f8cd3fd9305d.png">
